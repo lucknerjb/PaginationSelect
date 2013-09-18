@@ -7,4 +7,4 @@ I have yet to create a demo site and write some documentation for this plugin bu
 
 Questions? Comments? Want to help me out with this plugin?
 
-Send me a message: lucknerjb@gmai.com or make a pull request!
+Send me a message: lucknerjb@gmail.com or make a pull request!
