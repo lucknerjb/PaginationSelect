@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>PaginationSelect demo</title>
+	<link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="./assets/css/bootstrap-responsive.css" />
+	<link rel="stylesheet" type="text/css" href="./assets/css/bootstrap-docs.css" />
+	<link rel="stylesheet" type="text/css" href="./assets/css/paginationSelect.css" />
+
+	<style>
+		body {
+			padding: 10px;
+		}
+		#selectContainer {
+			border: 1px solid #CCC;
+			width: 250px;
+			min-height: 150px;
+		}
+
+		.paginationSelectFilter {
+			width: 152px;
+		}
+	</style>
+</head>
+<body>
+	<h3 id="count"></h3>
+	<select id="foodList" style="display: none;"></select>
+	<div id="selectContainer"></div>
+
+	<br />
+	<br />
+	<br />
+	<br />
+	<button id="getChecked">Get Checked</button>
+	<button id="getUnchecked">Get Unchecked</button>
+	<button id="getItems">Get Items</button>
+
+	<script type="text/javascript" src="./assets/js/jquery.js"></script>
+	<script type="text/javascript" src="./assets/js/bootstrap.js"></script>
+	<script type="text/javascript" src="./assets/js/paginationSelect.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			/*
+			var foodListData = [
+				{value: 'milk', title: 'Milk', selected: 0},
+				{value: 'jam', title: 'Jam', selected: 1},
+				{value: 'bread', title: 'Bread', selected: 1},
+				{value: 'eggs', title: 'Eggs', selected: 0},
+				{value: 'butter', title: 'Butter', selected: 1},
+				{value: 'mayo', title: 'Mayo', selected: 0},
+				{value: 'oranges', title: 'Oranges', selected: 0},
+				{value: 'apples', title: 'Apples', selected: 1},
+				{value: 'spices', title: 'Spices', selected: 1},
+				{value: 'coffee', title: 'Coffee', selected: 0}
+			];
+			*/
+
+			var min = 0;
+			var max = 50000;
+			// and the formula is:
+			
+			var foodListData = [];
+
+			// Generate random items for testing purposes
+			var numItems = 1000;
+			for(index = 0; index < numItems; index++) {
+				var random = Math.floor(Math.random() * (max - min + 1)) + min;
+				var selected = Math.floor(Math.random() * (1 - 0 + 1));
+				obj = {value: random, title: random, selected: (selected) ? true : false}
+				foodListData.push(obj);
+			}
+
+			$('#count').html( Object.keys(foodListData).length + ' items' );
+
+			$('#foodList').paginationSelect({
+				container: '#selectContainer',
+				dataSource: foodListData,
+				pageSize: 10
+			});
+
+			// $('#foodList').paginationSelect('goToPage', 5);
+
+			$('#getChecked').click(function(){
+				var checked = $('#foodList').paginationSelect('checked');
+				console.log(checked);
+				return false;
+			});
+
+			$('#getUnchecked').click(function(){
+				var unchecked = $('#foodList').paginationSelect('unchecked');
+				console.log(unchecked);
+				return false;
+			});
+
+			$('#getItems').click(function(){
+				var items = $('#foodList').paginationSelect('items');
+				console.log(items);
+				return false;
+			});
+		});
+	</script>
+</body>
+</html>
